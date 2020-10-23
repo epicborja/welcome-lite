@@ -140,3 +140,4 @@ cython_debug/
 private/
 secrets/
 .idea/
+/.env-dev

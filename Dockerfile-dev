@@ -1,0 +1,11 @@
+FROM python:3.7
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /welcome
+
+COPY Pipfile Pipfile.lock /welcome/
+RUN pip install pipenv && pipenv install --system
+
+COPY . /welcome/
