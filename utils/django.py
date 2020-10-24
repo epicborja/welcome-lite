@@ -3,13 +3,14 @@ import os
 
 # TODO: A better way for getting the django host
 def get_host():
-    """Returns Django host"""
+    """Returns a Django host"""
 
-    host = os.environ.get("ALLOWED_HOSTS").split(" ")
+    all_hosts = os.environ.get("ALLOWED_HOSTS").split(" ")
+    host = all_hosts[0]
     return host
 
 
 def get_port():
     """Returns Django port"""
-    django_port = os.os.environ.get("DJANGO_PORT")
+    django_port = os.environ.get("DJANGO_PORT")
     return django_port
