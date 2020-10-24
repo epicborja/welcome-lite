@@ -8,7 +8,7 @@ services:
     env_file:
       - .env-dev
     volumes:
-      - .:/impartialreader-api
+      - .:/welcome
     ports:
       - 8000:8000
     depends_on:
@@ -36,6 +36,36 @@ services:
       - db_data:/var/lib/postgresql/data/
     env_file:
       - .env-dev
+
+  selenium_hub:
+    container_name: selenium_hub
+    image: selenium/hub
+    ports:
+      - "4444:4444"
+    links:
+      - web
+
+  selenium_chrome:
+    container_name: selenium_chrome
+    image: selenium/node-chrome-debug
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium_hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    ports:
+      - "5900:5900"
+    depends_on:
+      - selenium_hub
+
+  selenium_firefox:
+    container_name: selenium_firefox
+    image: selenium/node-firefox-debug
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium_hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    ports:
+      - "5901:5900"
+    depends_on:
+      - selenium_hub
 
 volumes:
   es_data:
