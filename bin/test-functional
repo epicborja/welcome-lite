@@ -1,4 +1,4 @@
 sudo docker-compose -f docker-compose-dev.yaml exec web python manage.py test \
- --parallel --tag=initial-test
+ --parallel functional_tests
 
 
