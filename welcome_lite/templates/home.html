@@ -1,0 +1,21 @@
+<!-- templates/home.html -->
+{% extends '_base.html' %}
+
+{% block title %}WelcomeLite Home{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="display-3">Home</h1>
+
+    {% if user.is_authenticated %}
+
+    <p class="is-logged-text"> Hi {{ user.email }} welcome to Welcome Lite. </p>
+
+    {% else %}
+     <p class="is-logged-text"> You are not logged in. </p>
+    {% endif %}
+
+</div>
+
+{% endblock content %}
