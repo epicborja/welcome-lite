@@ -1,10 +1,11 @@
-from selenium import webdriver
-from selenium.webdriver import DesiredCapabilities
+from django.test import TestCase
+from django.urls import resolve
 
-from django.test import TestCase, tag
-
-DJANGO_URL = 'http://web:8000/'
-EXPECTED_TITLE = 'Django'
+from joboffers.views import home_page
 
 
+class HomePageTest(TestCase):
 
+    def test_root_url_resolves_homepage(self):
+        response = resolve('/')
+        self.assertTemplateUsed(response, 'home.html')
