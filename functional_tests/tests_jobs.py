@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
 from django.test import LiveServerTestCase
 
+from users.models import CustomUser
+
 DJANGO_URL = 'http://web:8000/'
 
 TESTING_BROWSER = os.environ.get('TESTING_BROWSER')
@@ -57,7 +59,7 @@ class JobOfferTest(LiveServerTestCase):
         current_url = self.browser.current_url
         self.assertURLEqual(DJANGO_URL + 'accounts/login/', current_url)
 
-        # User signs in
+        # User logs in
         form_email = self.browser.find_element_by_id("id_login")
         form_email.send_keys(TEST_USER_EMAIL)
         form_pass = self.browser.find_element_by_id("id_password")
@@ -72,7 +74,7 @@ class JobOfferTest(LiveServerTestCase):
 
     def test_user_posting_job(self):
         # User logs in
-        self.fail("Finish user logs in")
+        self.fail("User logs in")
 
         # User posts a new job
         self.fail("Finish user post new job offer")

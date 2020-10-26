@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
 from django.test import LiveServerTestCase
 
+from users.models import CustomUser
+
 DJANGO_URL = 'http://web:8000/'
 
 TESTING_BROWSER = os.environ.get('TESTING_BROWSER')
@@ -35,6 +37,7 @@ class BaseFunctionalTest(LiveServerTestCase):
 
     def tearDown(self):
         self.browser.quit()
+        CustomUser.objects.get(email = TEST_USER_EMAIL).delete()
 
     def test_user_logs(self):
         # User goes to webpage

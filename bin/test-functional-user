@@ -1,0 +1,4 @@
+sudo docker-compose -f docker-compose-dev.yaml exec web python manage.py test \
+functional_tests/users
+
+
