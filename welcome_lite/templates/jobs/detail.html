@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} {{ job.title }} {% endblock title %}
+
+{% block content %}
+    <h1 class="display-3 "> Job offer {{ job.title }} </h1>
+    {% if user.is_authenticated %}
+        <h1>{{ job.title }}</h1>
+        <p class="date">
+        Published {{ job.publish }} by {{ job.author }}
+        </p>
+        {{ job.body|linebreaks }}
+    {% else %}
+        <p class="display-4 "> Please, log in to enjoy our product </p>
+    {% endif %}
+
+{% endblock content %}

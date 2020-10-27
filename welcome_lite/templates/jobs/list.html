@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Job offers {% endblock title %}
+
+{% block content %}
+    <h1 class="display-3 "> Job offers list </h1>
+    {% if user.is_authenticated %}
+        {% if jobs_list %}
+            {% for job in jobs_list %}
+                <div>
+                    <h2><a href="{% url 'joboffers_detail' job.publish.year job.publish.month job.publish.day job.slug %}">
+                        {{ job.title }}</a></h2>
+                    <p class="status">{{ job.publication_status }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>You have not posted any job offer! Create your first post!</p>
+            <form action="{% url "joboffers_create" %}" method="post">
+                {{ form|crispy }}
+                {% csrf_token %}
+            <input type="submit" value="Create Post">
+            </form>
+        {% endif %}
+
+
+    {% else %}
+        <p class="display-4 "> Please, log in to enjoy our product </p>
+    {% endif %}
+
+{% endblock content %}

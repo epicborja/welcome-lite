@@ -24,5 +24,5 @@ urlpatterns = [
 
     # Local apps
     path('', include('pages.urls')),
-    path('jobs/', include('joboffers.urls'))
+    path('jobs/', include('joboffers.urls'), name ='joboffers')
 ]

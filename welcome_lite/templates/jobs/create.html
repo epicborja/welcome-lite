@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} {{ job.title }} {% endblock title %}
+
+{% block content %}
+    <h1 class="display-3 "> Create Job offer </h1>
+    {% if user.is_authenticated %}
+            <form action="{% url "joboffers_create" %}" method="post">
+                {{ form|crispy }}
+                {% csrf_token %}
+            <input type="submit" value="Create Post">
+            </form>
+    {% else %}
+        <p class="display-4 "> Please, log in to enjoy our product </p>
+    {% endif %}
+
+{% endblock content %}

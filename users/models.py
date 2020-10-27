@@ -23,6 +23,7 @@ class CustomUser(AbstractUser):
     plan = models.CharField(
         max_length=10,
         choices=PremiumPlan.choices,
-        default=PremiumPlan.NO_PLAN
+        default=PremiumPlan.FREE,
+        blank=True, null=False
     )
 

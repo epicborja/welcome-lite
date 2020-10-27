@@ -9,11 +9,12 @@
     <h1 class="display-3">Home</h1>
 
     {% if user.is_authenticated %}
-
-    <p class="is-logged-text"> Hi {{ user.email }} welcome to Welcome Lite. </p>
-
+        <p class="display-4 "> Here at Welcome Lite you will forget about
+            tedious work
+        </p>
+        <p></p>
     {% else %}
-     <p class="is-logged-text"> You are not logged in. </p>
+        <p class="display-4 "> Please, log in to enjoy our product </p>
     {% endif %}
 
 </div>
