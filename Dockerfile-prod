@@ -13,8 +13,7 @@ RUN pip install pipenv && pipenv install --system
 
 COPY . /welcome/
 
-RUN adduser -D myuser
-USER myuser
+CMD gunicorn welcome_lite.wsgi --bind 0.0.0.0:8000 --reload
 
 
 

@@ -142,3 +142,4 @@ secrets/
 .idea/
 /.env-dev
 /.env-prod
+/heroku.txt
