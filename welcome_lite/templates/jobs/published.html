@@ -1,19 +1,11 @@
-<!-- templates/home.html -->
 {% extends '_base.html' %}
-
-{% block title %}WelcomeLite Home{% endblock title %}
+{% load crispy_forms_tags %}
+{% block title %} Job offers {% endblock title %}
 
 {% block content %}
-
-<div class="container">
-    <h1 class="display-3">Home</h1>
-
+    <h1 class="display-3 "> Job offers list </h1>
     {% if user.is_authenticated %}
-        <p class="display-4 "> Here at Welcome Lite you will forget about
-            tedious work
-        </p>
         {% if jobs_list %}
-            <p class="display-4 "> These are the offers available today:</p>
             {% for job in jobs_list %}
                 <div>
                     <h2><a href="{% url 'joboffers_detail' job.publish.year job.publish.month job.publish.day job.slug %}">
@@ -23,15 +15,11 @@
             {% endfor %}
         {% else %}
             <p>There are not available job offers out there.</p>
+
         {% endif %}
 
-
     {% else %}
-        <p class="display-4 ">Start for free </p><a
-            class="btn btn-outline-primary" id="sign-up-button"
-            href="{% url 'account_signup' %}">Sign Up</a>
+        <p class="display-4 "> Please, log in to enjoy our product </p>
     {% endif %}
-
-</div>
 
 {% endblock content %}

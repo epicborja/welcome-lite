@@ -3,12 +3,12 @@
 {% block title %} {{ job.title }} {% endblock title %}
 
 {% block content %}
-    <h1 class="display-3 "> Create Job offer </h1>
+    <h1 class="display-3 "> Job offer {{ job.title }} </h1>
     {% if user.is_authenticated %}
             <form action="{% url "joboffers_create" %}" method="post">
                 {{ form|crispy }}
                 {% csrf_token %}
-            <input type="submit" value="Create Post">
+            <input class="btn btn-outline-primary" type="submit" value="Create Post">
             </form>
     {% else %}
         <p class="display-4 "> Please, log in to enjoy our product </p>

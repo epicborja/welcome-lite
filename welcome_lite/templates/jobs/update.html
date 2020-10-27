@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} {{ job.title }} {% endblock title %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+            {% if user == form.instance.author %}
+                <h1 class="display-3 "> Update Job offer </h1>
+                <form method="post">
+                {{ form|crispy }}
+                {% csrf_token %}
+                <input class="btn btn-outline-primary" type="submit" value="Update">
+                </form>
+            {% else %}
+                <p >You have not permission to edit this job offer.
+                    Please go home. </p>
+            {% endif %}
+    {% else %}
+        <p class="display-4 "> Please, log in to enjoy our product </p>
+    {% endif %}
+
+{% endblock content %}

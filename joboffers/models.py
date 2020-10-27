@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 
+from random import randint
+
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -69,7 +71,7 @@ class JobOffer(models.Model):
 
     def save(self, *args, **kwargs):
         if self.slug == 'no-slug':
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.title )+ '-' + f'{randint(1000,9999)}'
         if self.author.plan == 'Free':
             self.company_in_secret = False
         super().save(*args, **kwargs)

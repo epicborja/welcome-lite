@@ -10,6 +10,13 @@
         Published {{ job.publish }} by {{ job.author }}
         </p>
         {{ job.body|linebreaks }}
+        {% if user == job.author %}
+        <a href="{% url 'joboffers_update' job.publish.year job.publish.month job.publish.day job.slug %}"> Edit this offer</a>
+
+        <a class="btn btn-danger float-right" href=
+                "{% url 'joboffers_delete' job.publish.year job.publish.month job.publish.day job.slug %}"> Delete </a>
+        {% endif %}
+
     {% else %}
         <p class="display-4 "> Please, log in to enjoy our product </p>
     {% endif %}

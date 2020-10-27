@@ -27,9 +27,9 @@
 
         {% if user.is_authenticated %}
             <a class="p-2 text-dark" id="log-out-button"
-             href="{% url 'joboffers_jobs' %}">Job offers</a>
+             href="{% url 'joboffers_jobs' %}">My job offers</a>
             <a class="p-2 text-dark" id="log-out-button"
-             href="{% url 'account_logout' %}">Log Out</a>
+             href="{% url 'account_logout' %}">Logged as {{ user }}</a>
 
         {% else %}
           <a class="p-2 text-dark" id="log-in-button"

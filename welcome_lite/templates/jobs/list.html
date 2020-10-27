@@ -14,11 +14,12 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p>You have not posted any job offer! Create your first post!</p>
+            <p>You have not posted any job offer!</p>
+            <p>Create your first post:</p>
             <form action="{% url "joboffers_create" %}" method="post">
                 {{ form|crispy }}
                 {% csrf_token %}
-            <input type="submit" value="Create Post">
+                <input type="submit" value="Create Post">
             </form>
         {% endif %}
 
