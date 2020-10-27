@@ -1,6 +1,6 @@
 build:
     docker:
-      web: Dockerfile-prod
+      web: Dockerfile
 run:
   web: gunicorn welcome_lite.wsgi --bind 0.0.0.0:8000 --reload
 
