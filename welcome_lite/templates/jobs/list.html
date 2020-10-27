@@ -7,10 +7,20 @@
     {% if user.is_authenticated %}
         {% if jobs_list %}
             {% for job in jobs_list %}
-                <div>
-                    <h2><a href="{% url 'joboffers_detail' job.publish.year job.publish.month job.publish.day job.slug %}">
-                        {{ job.title }}</a></h2>
-                    <p class="status">{{ job.publication_status }}</p>
+
+                <p class="display-4">Offers available today:</p>
+                <div class="list-group">
+                    {% for job in jobs_list %}
+                        <a class="list-group-item list-group-item-action" href=
+                                "{% url 'joboffers_detail' job.publish.year job.publish.month job.publish.day job.slug %}">
+                                 <h1 class="display-5">{{ job.title }}</h1>
+                                <p class="font-weight-light">
+                                    {{ job.publication_status }} - {{ job.publish }}</p>
+                                <p class="font-weight-normal">
+                                    {{ job.company }}</p>
+                        </a>
+
+                    {% endfor %}
                 </div>
             {% endfor %}
         {% else %}

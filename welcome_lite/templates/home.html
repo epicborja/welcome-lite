@@ -6,21 +6,23 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="display-3">Home</h1>
-
+    <h1 class="display-5">Home</h1>
+    <p class="display-3 "> Enjoy HR with Welcome Lite</p>
     {% if user.is_authenticated %}
-        <p class="display-4 "> Here at Welcome Lite you will forget about
-            tedious work
-        </p>
+        <div style="padding: 5em"/>
         {% if jobs_list %}
-            <p class="display-4 "> These are the offers available today:</p>
-            {% for job in jobs_list %}
-                <div>
-                    <h2><a href="{% url 'joboffers_detail' job.publish.year job.publish.month job.publish.day job.slug %}">
-                        {{ job.title }}</a></h2>
-                    <p class="status">{{ job.publication_status }}</p>
-                </div>
-            {% endfor %}
+            <p class="display-4">Offers available today:</p>
+            <div class="list-group">
+
+
+
+                {% for job in jobs_list %}
+                    <a class="list-group-item list-group-item-action" href=
+                            "{% url 'joboffers_detail' job.publish.year job.publish.month job.publish.day job.slug %}">
+                            {{ job.title }}</a>
+
+                {% endfor %}
+            </div>
         {% else %}
             <p>There are not available job offers out there.</p>
         {% endif %}

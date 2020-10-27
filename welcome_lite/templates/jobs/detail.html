@@ -9,12 +9,34 @@
         <p class="date">
         Published {{ job.publish }} by {{ job.author }}
         </p>
-        {{ job.body|linebreaks }}
+
+        <ul class="list-group">
+            <a class="list-group-item list-group-item-action">
+                Company: {{ job.company }}</a>
+            <a class="list-group-item list-group-item-action">
+                Location: {{ job.location }}</a>
+            <a class="list-group-item list-group-item-action">
+                Speciality: {{ job.speciality }}</a>
+            <a class="list-group-item list-group-item-action">
+                Description: {{ job.description }}</a>
+            <a class="list-group-item list-group-item-action">
+                Experience: {{ job.required_experience }}</a>
+            <a class="list-group-item list-group-item-action">
+                Salary ($): {{ job.salary }}</a>
+
+        </ul>
+
         {% if user == job.author %}
+
+
+            <div style="padding: 1em"/>
         <a href="{% url 'joboffers_update' job.publish.year job.publish.month job.publish.day job.slug %}"> Edit this offer</a>
+
+
 
         <a class="btn btn-danger float-right" href=
                 "{% url 'joboffers_delete' job.publish.year job.publish.month job.publish.day job.slug %}"> Delete </a>
+
         {% endif %}
 
     {% else %}
