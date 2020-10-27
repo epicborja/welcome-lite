@@ -12,6 +12,8 @@ selenium = "*"
 django-allauth = "*"
 django-crispy-forms = "*"
 uuid = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.8"

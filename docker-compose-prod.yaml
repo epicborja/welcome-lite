@@ -1,0 +1,57 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile-prod
+    env_file:
+      - .env-prod
+    volumes:
+      - .:/welcome
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    command: gunicorn welcome_lite.wsgi --bind 0.0.0.0:8000 --reload
+
+  db:
+    image: postgres:12
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+    env_file:
+      - .env-prod
+
+  selenium_hub:
+    container_name: selenium_hub
+    image: selenium/hub
+    ports:
+      - "4444:4444"
+    links:
+      - web
+
+  selenium_chrome:
+    container_name: selenium_chrome
+    image: selenium/node-chrome-debug
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium_hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    ports:
+      - "5900:5900"
+    depends_on:
+      - selenium_hub
+
+  selenium_firefox:
+    container_name: selenium_firefox
+    image: selenium/node-firefox-debug
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium_hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    ports:
+      - "5901:5900"
+    depends_on:
+      - selenium_hub
+
+volumes:
+  es_data:
+  db_data:

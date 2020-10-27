@@ -141,3 +141,4 @@ private/
 secrets/
 .idea/
 /.env-dev
+/.env-prod
